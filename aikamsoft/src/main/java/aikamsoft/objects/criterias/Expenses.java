@@ -3,12 +3,12 @@ package aikamsoft.objects.criterias;
 
 import aikamsoft.objects.types.Types;
 
-public class Expenses {
+public class Expenses extends Criteria {
 
-  Types type = Types.cost;
+  transient Types type = Types.cost;
 
-  int minExpenses;
-  int maxExpenses;
+  private int minExpenses;
+  private int maxExpenses;
 
   public int getMaxExpenses() {
     return this.maxExpenses;

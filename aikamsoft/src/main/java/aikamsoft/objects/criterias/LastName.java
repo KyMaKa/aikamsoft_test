@@ -2,16 +2,13 @@ package aikamsoft.objects.criterias;
 
 import aikamsoft.objects.types.Types;
 
-public class LastName{
+public class LastName extends Criteria {
 
-  Types type = Types.lastName;
-  String lastName;
+  transient Types type = Types.lastName;
+  private String lastName;
 
-  public String getName() {
+  public String getLastName() {
     return this.lastName;
   }
 
-  public int getValue() {
-    return 0;
-  }
 }

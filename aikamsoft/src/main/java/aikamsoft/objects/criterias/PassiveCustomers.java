@@ -2,17 +2,13 @@ package aikamsoft.objects.criterias;
 
 import aikamsoft.objects.types.Types;
 
-public class PassiveCustomers {
+public class PassiveCustomers extends Criteria {
 
-  Types type = Types.passiveCustomers;
+  transient Types type = Types.passiveCustomers;
 
   int badCustomers;
 
-  public String getName() {
-    return null;
-  }
-
-  public int getValue() {
+  public int getCount() {
     return this.badCustomers;
   }
 }

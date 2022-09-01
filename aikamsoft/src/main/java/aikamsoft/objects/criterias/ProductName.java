@@ -2,9 +2,9 @@ package aikamsoft.objects.criterias;
 
 import aikamsoft.objects.types.Types;
 
-public class ProductName {
+public class ProductName extends Criteria {
 
-  Types type = Types.product;
+  transient Types type = Types.product;
 
   String productName;
   int minTimes;
@@ -13,7 +13,7 @@ public class ProductName {
     return this.productName;
   }
 
-  public int getValue() {
-    return 0;
+  public int getMinTimes() {
+    return minTimes;
   }
 }
