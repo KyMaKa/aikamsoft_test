@@ -1,0 +1,58 @@
+{
+  "results": [
+    {
+      "criteria": {
+        "lastName": "Shatalov",
+        "type": "lastName"
+      },
+      "results": [
+        {
+          "lastName": "Shatalov",
+          "firstName": "Ivan"
+        }
+      ]
+    },
+    {
+      "criteria": {
+        "productName": "Spoon",
+        "minTimes": 2,
+        "type": "product"
+      },
+      "results": [
+        {
+          "lastName": "Sorento",
+          "firstName": "Artur"
+        }
+      ]
+    },
+    {
+      "criteria": {
+        "minExpenses": 112,
+        "maxExpenses": 4000,
+        "type": "cost"
+      },
+      "results": [
+        {
+          "lastName": "Sorento",
+          "firstName": "Artur"
+        }
+      ]
+    },
+    {
+      "criteria": {
+        "badCustomers": 2,
+        "type": "passiveCustomers"
+      },
+      "results": [
+        {
+          "lastName": "Shatalov",
+          "firstName": "Ivan"
+        },
+        {
+          "lastName": "Wolf",
+          "firstName": "John"
+        }
+      ]
+    }
+  ]
+}
