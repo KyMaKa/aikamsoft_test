@@ -1,84 +1,74 @@
 package aikamsoft.main;
 
-import aikamsoft.finder.Finder;
-import aikamsoft.objects.criterias.Criteria;
-import aikamsoft.objects.criterias.Expenses;
-import aikamsoft.objects.criterias.LastName;
-import aikamsoft.objects.criterias.PassiveCustomers;
-import aikamsoft.objects.criterias.ProductName;
-import aikamsoft.objects.entitys.CriteriaResults;
-import aikamsoft.objects.entitys.Person;
-import aikamsoft.objects.entitys.Results;
-import aikamsoft.objects.types.Types;
-import aikamsoft.parser.InputParser;
-import aikamsoft.parser.OutputParser;
+import aikamsoft.controller.SearchController;
+import aikamsoft.controller.StatisticController;
+import aikamsoft.data.models.input.Criteria;
+import aikamsoft.data.models.output.Results;
+import aikamsoft.data.models.output.Statistic;
+import aikamsoft.service.parser.InputParser;
+import aikamsoft.service.parser.OutputParser;
 import java.io.IOException;
-import java.util.Date;
-import java.time.LocalDate;
 import java.sql.SQLException;
-import java.util.LinkedList;
 import java.util.List;
 
 public class Main {
 
+  /**
+   * Main class, entry point for app.*
+   * @param args command-line arguments.
+   * @throws IOException
+   * @throws SQLException
+   */
   public static void main(String[] args) throws IOException, SQLException {
 
-    String operation = null;
-    if (args.length == 3) {
-      operation = args[0];
-      String input_file = args[1];
-      String output_file = args[2];
-    }
-
-    Results results = new Results();
-
-    if (operation != null && operation.equals("search")) {
-      results.setType(operation);
-    }
-    if (operation != null && operation.equals("stat")) {
-      System.out.println(operation);
-    }
+    String operation;
+    String input_file;
+    String output_file;
 
     InputParser inputParser = new InputParser();
     OutputParser outputParser = new OutputParser();
 
-    List<Criteria> criterias = inputParser.parse("aikamsoft/src/main/resources/input.json");
-    Finder finder = new Finder();
-    List<CriteriaResults> resultsList = new LinkedList<>();
-    for (Criteria c : criterias) {
-      if (c.getType().equals(Types.lastName)) {
-        LastName lastName = (LastName) c;
-        List<Person> people = finder.getByLastName(lastName.getLastName());
-        CriteriaResults criteriaResults = new CriteriaResults();
-        criteriaResults.setCriteria(lastName);
-        criteriaResults.setResults(people);
-        resultsList.add(criteriaResults);
-      } else if (c.getType().equals(Types.product)) {
-        ProductName product = (ProductName) c;
-        List<Person> people = finder.getByProduct(product.getName(), product.getMinTimes());
-        CriteriaResults criteriaResults = new CriteriaResults();
-        criteriaResults.setCriteria(product);
-        criteriaResults.setResults(people);
-        resultsList.add(criteriaResults);
-      } else if (c.getType().equals(Types.cost)) {
-        Expenses expenses = (Expenses) c;
-        List<Person> people = finder.getByPrice(expenses.getMinExpenses(),
-            expenses.getMaxExpenses());
-        CriteriaResults criteriaResults = new CriteriaResults();
-        criteriaResults.setCriteria(expenses);
-        criteriaResults.setResults(people);
-        resultsList.add(criteriaResults);
-      } else if (c.getType().equals(Types.passiveCustomers)) {
-        PassiveCustomers passiveCustomers = (PassiveCustomers) c;
-        List<Person> people = finder.getByLeastPurchases(passiveCustomers.getCount());
-        CriteriaResults criteriaResults = new CriteriaResults();
-        criteriaResults.setCriteria(passiveCustomers);
-        criteriaResults.setResults(people);
-        resultsList.add(criteriaResults);
-      }
+    if (args.length == 3) {
+      operation = args[0];
+      input_file = args[1];
+      output_file = args[2];
+    } else {
+      String errorMessage = "Error! Please enter 3 arguments. Ex: search input.json output.json";
+      System.out.println(errorMessage);
+      outputParser.writeError(errorMessage);
+      return;
     }
-    results.setResults(resultsList);
-    outputParser.write("output.json", results);
-    finder.getStatistic(LocalDate.of(1900, 1,1), LocalDate.of(2222,2,2));
+    // Initializing controllers for mapping data from DB to entity.
+    StatisticController statController = new StatisticController();
+    SearchController searchController = new SearchController();
+
+    if (operation.equals("search")) {
+      List<Criteria> criterias;
+      try {
+        criterias = inputParser.parseSearch(input_file);
+      } catch (CustomException e) {
+        System.out.println(e.getMessage());
+        outputParser.writeError(e.getMessage());
+        return;
+      }
+      Results results = searchController.searchOperation(criterias);
+      outputParser.write(output_file, results);
+    } else if (operation.equals("stat")) {
+      Criteria crit;
+      try {
+        crit = inputParser.parseStat(input_file);
+      } catch (CustomException e) {
+        System.out.println(e.getMessage());
+        outputParser.writeError(e.getMessage());
+        return;
+      }
+      Statistic stat = statController.statOperation(crit);
+      outputParser.write(output_file, stat);
+    } else {
+      String errorMessage = "Error! Please write correct operation type: search or stat";
+      System.out.println(errorMessage);
+      outputParser.writeError(errorMessage);
+    }
   }
+
 }
