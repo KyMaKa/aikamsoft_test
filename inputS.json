@@ -1,0 +1,9 @@
+{
+  "criterias": [
+    {"type": "lastName", "lastName": "Shatalov"},
+    {"type":  "lastName", "lastName": "Yerr"},
+    {"type": "product", "productName": "Spoon", "minTimes": 2},
+    {"type": "cost", "minExpenses": 112, "maxExpenses": 4000},
+    {"type": "passiveCustomers", "badCustomers": 2}
+  ]
+}

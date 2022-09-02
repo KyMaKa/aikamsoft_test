@@ -1,4 +1,5 @@
 {
+  "type": "search",
   "results": [
     {
       "criteria": {
@@ -9,6 +10,18 @@
         {
           "lastName": "Shatalov",
           "firstName": "Ivan"
+        }
+      ]
+    },
+    {
+      "criteria": {
+        "lastName": "Yerr",
+        "type": "lastName"
+      },
+      "results": [
+        {
+          "lastName": "Yerr",
+          "firstName": "Anna"
         }
       ]
     },
@@ -33,8 +46,8 @@
       },
       "results": [
         {
-          "lastName": "Sorento",
-          "firstName": "Artur"
+          "lastName": "Yerr",
+          "firstName": "Anna"
         }
       ]
     },
@@ -49,8 +62,8 @@
           "firstName": "Ivan"
         },
         {
-          "lastName": "Wolf",
-          "firstName": "John"
+          "lastName": "Yerr",
+          "firstName": "Anna"
         }
       ]
     }
