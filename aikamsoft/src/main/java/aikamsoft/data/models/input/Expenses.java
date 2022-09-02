@@ -1,7 +1,7 @@
-package aikamsoft.objects.criterias;
+package aikamsoft.data.models.input;
 
 
-import aikamsoft.objects.types.Types;
+import aikamsoft.data.types.Types;
 
 public class Expenses extends Criteria {
 

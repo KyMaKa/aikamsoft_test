@@ -1,6 +1,6 @@
-package aikamsoft.objects.entitys;
+package aikamsoft.data.models.output;
 
-import aikamsoft.objects.criterias.Criteria;
+import aikamsoft.data.models.input.Criteria;
 import java.util.List;
 
 public class CriteriaResults {

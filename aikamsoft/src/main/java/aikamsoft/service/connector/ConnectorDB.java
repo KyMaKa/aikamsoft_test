@@ -1,10 +1,12 @@
-package aikamsoft.connector;
+package aikamsoft.service.connector;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.sql.Statement;
 
+/**
+ * Gets connection to DB. Setting to connect stored here.*
+ */
 public class ConnectorDB {
 
   private final Connection connection;

@@ -1,16 +1,16 @@
-package aikamsoft.objects.entitys;
+package aikamsoft.data.models.output;
 
 import java.util.List;
 
 public class Statistic {
 
-  private String type;
-  private int totalDays;
+  private String type = "stat";
+  private long totalDays;
 
   private List<PersonStatistic> customers;
 
   private long totalExpenses;
-  private long avgExpenses;
+  private double avgExpenses;
 
   public String getType() {
     return type;
@@ -20,11 +20,11 @@ public class Statistic {
     this.type = type;
   }
 
-  public int getTotalDays() {
+  public long getTotalDays() {
     return totalDays;
   }
 
-  public void setTotalDays(int totalDays) {
+  public void setTotalDays(long totalDays) {
     this.totalDays = totalDays;
   }
 
@@ -44,11 +44,11 @@ public class Statistic {
     this.totalExpenses = totalExpenses;
   }
 
-  public long getAvgExpenses() {
+  public double getAvgExpenses() {
     return avgExpenses;
   }
 
-  public void setAvgExpenses(long avgExpenses) {
+  public void setAvgExpenses(double avgExpenses) {
     this.avgExpenses = avgExpenses;
   }
 }

@@ -1,4 +1,4 @@
-package aikamsoft.objects.entitys;
+package aikamsoft.data.models.output;
 
 import java.util.List;
 

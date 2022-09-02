@@ -1,14 +1,15 @@
-package aikamsoft.objects.entitys;
+package aikamsoft.data.models.output;
 
+import java.util.LinkedList;
 import java.util.List;
 
 public class PersonStatistic {
 
   private String name;
 
-  private List<Purchases> purchases;
+  private List<Item> purchases = new LinkedList<>();
 
-  private long totalExpenses;
+  private long totalExpenses = 0;
 
   public String getName() {
     return name;
@@ -18,11 +19,11 @@ public class PersonStatistic {
     this.name = name;
   }
 
-  public List<Purchases> getPurchases() {
+  public List<Item> getPurchases() {
     return purchases;
   }
 
-  public void setPurchases(List<Purchases> purchases) {
+  public void setPurchases(List<Item> purchases) {
     this.purchases = purchases;
   }
 

@@ -1,4 +1,4 @@
-package aikamsoft.objects.entitys;
+package aikamsoft.data.models.output;
 
 public class Item {
   private String name;
